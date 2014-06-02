@@ -1,5 +1,5 @@
 /*
- * +Gallery Javascript Photo gallery v0.9.4
+ * +Gallery Javascript Photo gallery v0.9.5
  * http://plusgallery.net/
  *
  * Copyright 2013, Jeremiah Martin | Twitter: @jeremiahjmartin
@@ -52,8 +52,8 @@ SLIDEFADE
       imagePath: 'images/plusgallery',
       type: 'google',
       albumTitle: false, //show the album title in single album mode
-      albumLimit: 16, //Limit amout of albums to load initially.
-      limit: 30, //Limit of photos to load for gallery / more that 60 is dumb, separate them into different albums
+      albumLimit: 999, //Limit amout of albums to load initially.
+      limit: 999, //Limit of photos to load for gallery / more that 60 is dumb, separate them into different albums
       apiKey: '', //used with Flickr
       exclude: null,
       include: null,
@@ -193,6 +193,9 @@ SLIDEFADE
         dataAttr = lmnt.attr('data-limit');
         if(dataAttr) {
           pg.limit = dataAttr;
+        }
+        if(pg.type == 'flickr' && pg.limit > 30){
+          pg.limit = 30;
         }
         
         //Limit on the amount albums
